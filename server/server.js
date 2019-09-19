@@ -8,7 +8,8 @@ const server = express();
 const session = require('express-session');
 const connectSessionKnex = require('connect-session-knex');
 
-const authRouter = require('../auth/auth-router');
+const authRouter = require('../api/auth-router');
+const listings = require('../api/listings/listings')
 
 const KnexSessionStore= connectSessionKnex(session);
 
@@ -36,7 +37,9 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
-server.use('/api/auth', authRouter); //UPDATE WITH LOGIN URL
+server.use('/signup', authRouter);
+server.use('/login', authRouter);
+server.use('/listings', listings);
 
 server.get("/", (req, res) => {
   res.status(200).json({ api: "RV Camping Airbnb running" });

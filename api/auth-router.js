@@ -4,7 +4,7 @@ const Users= require('./user-model');
 
 //Uses sessions & cookies
 
-router.post('/register', (req, res) => {
+router.post('/signup', (req, res) => {
   let user = req.body;
   const hash = bcrypt.hashSync(user.password, 10);
   user.password = hash;
