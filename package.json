@@ -10,7 +10,7 @@
   "directory": "./migrations"
 },
 "seeds": {
-  "directory": "./data/seeds"
+  "directory": "./seeds"
 },
   "dependencies": {
     "bcryptjs": "^2.4.3",
