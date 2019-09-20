@@ -9,28 +9,28 @@ module.exports = {
 };
 
 function find() {
-  return db('listing').select('id', 'address');
+  return db('listings').select('id', 'address');
 }
 
 function update(id, changes) {
-  return db('listing')
+  return db('listings')
     .where({ id })
     .update(changes);
 }
 
 async function insert(detail) {
-  const [id] = await db('listing').insert(detail);
+  const [id] = await db('listings').insert(detail);
 
   return findById(id);
 }
 
 function findById(id) {
-  return db('listing')
+  return db('listings')
     .where({ id })
 }
 
 function remove(id) {
-  return db('listing')
+  return db('listings')
     .where({ id })
     .del();
 }
