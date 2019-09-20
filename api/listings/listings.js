@@ -1,9 +1,8 @@
 const router = require('express').Router();
-const router = express.Router();
 const Listings= require('./listings-model')
 
 router.get('/', (req, res) => {
-    db.find()
+    Listings.find()
     .then(listings => {
         res.status(200).json(listings);
     })
@@ -78,7 +77,7 @@ router.put('/:id', (req, res) => {
             error: "Please fill in all sections before submitting."
         })
     } else {
-        listings.update(req.params.id, req.body)
+        Listings.update(req.params.id, req.body)
         .then(listing => {
             if(listing){
                 res.status(200).json({
@@ -98,7 +97,7 @@ router.put('/:id', (req, res) => {
 router.delete('/:id', (req, res) => {
     const { id }= req.params;
 
-    db.remove(id)
+    Listings.remove(id)
     .then(deletedListing => {
         if(deletedListing) {
             res.status(200).json({
@@ -116,3 +115,5 @@ router.delete('/:id', (req, res) => {
         })
     })
 })
+
+module.exports= router;

@@ -1,13 +1,16 @@
 {
   "scripts": {
     "start": "node index.js",
-    "server": "nodemon index.js"
+    "server": "nodemon"
   },
   "devDependencies": {
     "nodemon": "^1.19.2"
   },
 "migrations": {
   "directory": "./migrations"
+},
+"seeds": {
+  "directory": "./data/seeds"
 },
   "dependencies": {
     "bcryptjs": "^2.4.3",
