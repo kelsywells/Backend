@@ -6,8 +6,8 @@ const Users= require('./user-model');
 
 router.post('/signup', (req, res) => {
   let user = req.body;
-
-  user.password= bcrypt.hashSync(user.password); 
+console.log(user)
+  user.password= bcrypt.hashSync(user.password, 10); 
 
   Users.add(user)
   .then(saved => {
@@ -20,13 +20,17 @@ router.post('/signup', (req, res) => {
 });
 
 router.post('/login', (req, res) => {
-  let { username, password } = req.body;
+  let { email, password } = req.body;
 
-  Users.findBy({ username })
-  .first()
-  .then(user => {
+console.log(email, password)
+  Users.findBy({ email })
+  
+  .then(res => {
+    
+    const user= res[0]
+
     if (user && bcrypt.compareSync(password, user.password)) {
-
+      console.log(user) 
       req.session.user = user;
       res.status(200).json({
         message: `Welcome ${user.username}!`,

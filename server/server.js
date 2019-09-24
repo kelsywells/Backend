@@ -36,6 +36,7 @@ const sessionConfig= {
 server.use(helmet());
 server.use(cors());
 server.use(express.json());
+server.use(session(sessionConfig));
 
 server.use('/', authRouter);
 server.use('/listings', listings);
