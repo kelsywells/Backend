@@ -37,8 +37,7 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
-server.use('/signup', authRouter);
-server.use('/login', authRouter);
+server.use('/', authRouter);
 server.use('/listings', listings);
 
 server.get("/", (req, res) => {
