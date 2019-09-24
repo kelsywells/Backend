@@ -1,21 +1,14 @@
 
 exports.up = function(knex) {
 
-knex.schema.hasTable('users').then(function(exists) {
+knex.schema.hasTable('member').then(function(exists) {
         if (!exists) {
     return knex.schema
-     .createTable(
-        'users', tbl => {
-            tbl.increments()
-            tbl.text('email')
-            tbl.text('password');
-        }
-    )
     .createTable(
         'member', tbl => {
             tbl.increments()
-            tbl.text('first-name')
-            tbl.text('last-name')
+            tbl.text('first_name')
+            tbl.text('last_name')
             tbl.text('email')
             tbl.text('password')
             tbl.boolean('member')
@@ -27,6 +20,5 @@ knex.schema.hasTable('users').then(function(exists) {
 
 exports.down = function(knex) {
   return knex.schema
-  .dropTableIfExists('users')
-  .dropTableIfExists('signup');
+  .dropTableIfExists('member')
 };
