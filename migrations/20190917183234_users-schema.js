@@ -7,11 +7,12 @@ knex.schema.hasTable('member').then(function(exists) {
     .createTable(
         'member', tbl => {
             tbl.increments()
-            tbl.text('first_name')
-            tbl.text('last_name')
-            tbl.text('email')
-            tbl.text('password')
+            tbl.string('first_name')
+            tbl.string('last_name')
+            tbl.string('email')
+            tbl.string('password')
             tbl.boolean('member')
+            tbl.timestamps(true, true);
         }
     )
 }
