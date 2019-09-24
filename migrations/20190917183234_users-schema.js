@@ -12,14 +12,13 @@ knex.schema.hasTable('users').then(function(exists) {
         }
     )
     .createTable(
-        'signup', tbl => {
+        'member', tbl => {
             tbl.increments()
             tbl.text('first-name')
             tbl.text('last-name')
             tbl.text('email')
             tbl.text('password')
-            tbl.boolean('rv-owner')
-            tbl.boolean('land-owner');
+            tbl.boolean('member')
         }
     )
 }
