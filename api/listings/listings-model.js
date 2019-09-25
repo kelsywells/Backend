@@ -9,7 +9,16 @@ module.exports = {
 };
 
 function find() {
-  return db('listings').select('id', 'address');
+  return db('listings').select(
+    'id',  
+    'address', 
+    'contact_phone',
+    'state',
+    'description',
+    'price',
+    'start_availability',
+    'end_availability'
+    );
 }
 
 function update(id, changes) {

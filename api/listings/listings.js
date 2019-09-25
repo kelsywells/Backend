@@ -35,6 +35,7 @@ router.get('/:id', (req, res) => {
 router.post('/', (req, res) => {
     const {
         address,
+        contact_phone,
         state,
         description,
         price,
@@ -42,7 +43,7 @@ router.post('/', (req, res) => {
         end_availability,
     } = req.body;
 
-    if (!address || !state || !description || !price || !start_availability || !end_availability) {
+    if (!address || !contact_phone || !state || !description || !price || !start_availability || !end_availability) {
         res.status(404).json({
             error: "Please fill in all sections before submitting."
         })
@@ -65,6 +66,7 @@ router.post('/', (req, res) => {
 router.put('/:id', (req, res) => {
     const { 
         address,
+        contact_phone,
         state,
         description,
         price,
@@ -72,7 +74,7 @@ router.put('/:id', (req, res) => {
         end_availability
     } = req.body;
 
-    if(!address || !state || !description || !price || !start_availability || !end_availability) {
+    if(!address || !contact_phone || !state || !description || !price || !start_availability || !end_availability) {
         res.status(400).json({
             error: "Please fill in all sections before submitting."
         })
