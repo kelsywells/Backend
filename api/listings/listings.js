@@ -38,12 +38,10 @@ router.post('/', (req, res) => {
         contact_phone,
         state,
         description,
-        price,
-        start_availability,
-        end_availability,
+        price
     } = req.body;
 
-    if (!address || !contact_phone || !state || !description || !price || !start_availability || !end_availability) {
+    if (!address || !contact_phone || !state || !description || !price) {
         res.status(404).json({
             error: "Please fill in all sections before submitting."
         })
@@ -57,7 +55,7 @@ router.post('/', (req, res) => {
         })
         .catch( err => {
             res.status(500).json({
-                error: "An error occurred while saving the post. Please try again."
+                error: "An error occurred while saving the post. Please try again.", err
             })
         })
     }

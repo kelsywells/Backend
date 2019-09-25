@@ -12,12 +12,13 @@ function find() {
   return db('listings').select(
     'id',  
     'address', 
+    'zipcode',
     'contact_phone',
     'state',
     'description',
     'price',
-    'start_availability',
-    'end_availability'
+    'start_date',
+    'end_date'
     );
 }
 

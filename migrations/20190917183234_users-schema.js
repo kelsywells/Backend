@@ -3,8 +3,7 @@ exports.up = function(knex) {
 
 knex.schema.hasTable('member').then(function(exists) {
         if (!exists) {
-    return knex.schema
-    .createTable(
+    return knex.schema.createTable(
         'member', tbl => {
             tbl.increments()
             tbl.string('first_name')

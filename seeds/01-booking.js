@@ -3,7 +3,7 @@ exports.seed = function(knex) {
 
   return knex('booking').truncate()
     .then(function () {
-      // Inserts seed entries
+
       return knex('booking').insert([
         {id: 1, 
           "address": "123 Ladybug Ln", 

@@ -4,6 +4,8 @@ exports.up = function(knex) {
         'listings', tbl => {
             tbl.increments()
             tbl.string('address').unique().notNullable()
+            tbl.string('state').notNullable()
+            tbl.integer('zipcode')
             tbl.string('contact_phone')
             tbl
                 .integer("user_id")
@@ -11,8 +13,6 @@ exports.up = function(knex) {
                 .inTable("users")
                 .onDelete("CASCADE")
                 .onUpdate("CASCADE")
-                .notNullable();
-            tbl.string('state').notNullable()
             tbl.string('description').notNullable()
             tbl.integer('price').notNullable()
             tbl.date('start_date')
