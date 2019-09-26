@@ -10,6 +10,7 @@ const connectSessionKnex = require('connect-session-knex');
 
 const authRouter = require('../api/auth-router');
 const listings = require('../api/listings/listings')
+const users= require('../api/users-router');
 
 const KnexSessionStore= connectSessionKnex(session);
 
@@ -40,6 +41,7 @@ server.use(session(sessionConfig));
 
 server.use('/', authRouter);
 server.use('/listings', listings);
+server.use('/users', users)
 
 server.get("/", (req, res) => {
   res.status(200).json({ api: "RV Camping Airbnb running" });

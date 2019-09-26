@@ -33,14 +33,14 @@ console.log(email, password)
       console.log(user) 
       req.session.user = user;
       res.status(200).json({
-        message: `Welcome ${user.username}!`,
+        message: `Welcome ${user.first_name}!`,
       });
     } else {
       res.status(401).json({ message: 'Invalid Credentials' });
     }
   })
-  .catch(error => {
-    res.status(500).json(error);
+  .catch(err => {
+    res.status(500).json({error: err});
   });
 });
 

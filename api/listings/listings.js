@@ -68,11 +68,9 @@ router.put('/:id', (req, res) => {
         state,
         description,
         price,
-        start_availability,
-        end_availability
     } = req.body;
 
-    if(!address || !contact_phone || !state || !description || !price || !start_availability || !end_availability) {
+    if(!address || !contact_phone || !state || !description || !price) {
         res.status(400).json({
             error: "Please fill in all sections before submitting."
         })
