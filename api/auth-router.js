@@ -22,27 +22,25 @@ console.log(user)
 
 router.post('/login', (req, res) => {
   const { email, password } = req.body;
-  const { id } = req.params;
 
 console.log(email, password)
 
-  Users.findBy({ id })
-  .then(res => {
-    const user= res[0]
+  Users.findBy({ email })
+  .then(user => {
 
     if (user && bcrypt.compareSync(password, user.password)) {
 
-      console.log(user) 
+      // console.log(user) 
 
       req.session.user = user;
-      res.status(200).json({
-        message: `Welcome, ${user.email}!`,
+      res.json({
+        message: `Welcome, ${user.first_name}!`,
       });
     } else {
       res.status(401).json({ message: 'Invalid Credentials' });
     }
   })
-  .catch(err => {
+  .catch(err => { console.log(err);
     res.status(500).json({error: err});
   });
 });
