@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const Listings= require('./listings-model')
+const restricted= require('../restricted-middleware')
+const secrets= require('../secrets')
 
 router.get('/', (req, res) => {
     Listings.find()
@@ -32,26 +34,22 @@ router.get('/:id', (req, res) => {
     })   
 })
 
-router.post('/', (req, res) => {
-    const {
-        address,
-        contact_phone,
-        state,
-        description,
-        price
-    } = req.body;
+router.post('/', restricted, (req, res) => {
+    req.body.user_id= req.decodedToken.sub;
 
-    if (!address || !contact_phone || !state || !description || !price) {
-        res.status(404).json({
-            error: "Please fill in all sections before submitting."
-        })
-    } else {
+    if (req.body) {
+
         Listings.insert(req.body)
         .then(listing => {
             res.status(201).json({
                 message: "Listing was successfully added!",
                 listing
-            })
+        }) 
+    })
+    } else {
+        res.status(404).json({
+            error: "Please fill in all sections before submitting."
+
         })
         .catch( err => {
             res.status(500).json({

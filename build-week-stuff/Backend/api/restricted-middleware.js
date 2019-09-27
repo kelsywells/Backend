@@ -1,10 +1,22 @@
+const jwt = require('jsonwebtoken')
+const secrets=require('../api/secrets');
 
 module.exports = (req, res, next) => {
+  const token= req.headers.authorization;
 
-    if (req.session && req.session.user) {
-      next();
+
+  jwt.verify(token, "lalala", (err, decodedToken) => {
+    if(err) {
+      res.status(401).json({
+        message: 'Not verified!'
+      })
     } else {
-      res.status(401).json({ message: 'You must be logged in first!' });
+      req.decodedToken= decodedToken;
+      next();
     }
+  })
+
+   
   
 };
+
